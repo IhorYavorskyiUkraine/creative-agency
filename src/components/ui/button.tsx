@@ -10,7 +10,7 @@ const buttonVariants = cva(
          variant: {
             transparent:
                "border spacing-1 text-base tracking-tightest border-white bg-transparent font-bold font-quicksand text-white shadow hover:bg-white/10 rounded-full",
-            white: "rounded-full bg-customWhite text-black font-quicksand font-bold",
+            white: "transition hover:bg-customWhite/80 rounded-full bg-customWhite text-black font-quicksand font-bold",
          },
          size: {
             default: "h-[48px] px-[50px] py-6 text-base",
@@ -28,17 +28,21 @@ export interface ButtonProps
    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
       VariantProps<typeof buttonVariants> {
    asChild?: boolean;
+   icon?: React.ReactNode;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-   ({ className, variant, size, asChild = false, ...props }, ref) => {
+   ({ icon, className, variant, size, asChild = false, ...props }, ref) => {
       const Comp = asChild ? Slot : "button";
       return (
-         <Comp
-            className={cn(buttonVariants({ variant, size, className }))}
-            ref={ref}
-            {...props}
-         />
+         <>
+            {icon}
+            <Comp
+               className={cn(buttonVariants({ variant, size, className }))}
+               ref={ref}
+               {...props}
+            />
+         </>
       );
    },
 );

@@ -1,17 +1,21 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-interface Props {
-   width: number;
-}
-
-function useMediaQuery({ width }): Props {
+const useMediaQuery = ({ width }: { width: number }): boolean => {
    const [isMobile, setIsMobile] = useState(false);
 
    useEffect(() => {
-      setIsMobile(window.innerWidth <= width);
-   }, []);
+      const handleResize = () => {
+         setIsMobile(window.innerWidth <= width);
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      handleResize();
+
+      return () => window.removeEventListener("resize", handleResize);
+   }, [width]);
 
    return isMobile;
-}
+};
 
 export default useMediaQuery;

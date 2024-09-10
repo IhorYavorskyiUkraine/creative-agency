@@ -24,9 +24,13 @@ export default {
             "3xl": "55px",
          },
          lineHeight: {
+            75: "75px",
+            33: "33px",
             25: "25px",
             24: "24px",
             20: "20px",
+            18: "18px",
+            14: "14px",
          },
          fontWeight: {
             thin: 100,
@@ -41,6 +45,8 @@ export default {
          },
          boxShadow: {
             whiteBtn: "0px 4px 8px 0px rgba(55, 125, 255, 0.5)",
+            block: "4px 4px 30px 0px rgba(0, 0, 0, 0.1)",
+            reviewItem: "0px 8px 24px 0px rgba(0, 0, 0, 0.05)",
          },
          colors: {
             background: "hsl(var(--background))",

@@ -2,57 +2,33 @@ import { Container } from "@/components/shared/Container.tsx";
 import { ImageBlock } from "@/components/shared/index.ts";
 import { Title } from "@/components/shared/Title.tsx";
 import { Button } from "@/components/ui/button.tsx";
-import useMediaQuery from "@/hooks/useMediaQuery.ts";
-import { cn } from "@/lib/utils.ts";
 
 interface Props {
-   className?: string;
+   isMobile: Boolean;
 }
 
-export const Main: React.FC<Props> = ({ className }) => {
-   const isMobile = useMediaQuery({ width: 768 });
-
+export const Main: React.FC<Props> = ({ isMobile }) => {
    return (
-      <section
-         className={cn(className, "overflow-hidden py-[70px] font-nunito")}
-      >
+      <section className="overflow-hidden py-[70px] font-nunito">
          <Container>
             <div className="mx-auto max-w-[768px] text-center font-extrabold">
-               {isMobile ? (
-                  <Title
-                     text="Make your dream business goal come true"
-                     className="mb-5 md:mb-6"
-                     size={"md"}
-                  />
-               ) : (
-                  <Title
-                     text="Make your dream business goal come true"
-                     className="mb-5 md:mb-6"
-                     size={"xl"}
-                  />
-               )}
+               <Title
+                  text="Make your dream business goal come true"
+                  className="mb-5 md:mb-6"
+                  size={isMobile ? "md" : "xl"}
+               />
                <p className="mb-5 text-sm font-regular leading-24 opacity-60 md:mb-8 md:text-xl">
                   when you need us for improve your business, <br /> then come
                   with us to help your business have reach it, you just sit and
                   feel that goal.
                </p>
-               {isMobile ? (
-                  <Button
-                     variant="white"
-                     size="sm"
-                     className="mb-[62px] shadow-whiteBtn transition hover:bg-customWhite/80"
-                  >
-                     <span className="leading-button">Start Project</span>
-                  </Button>
-               ) : (
-                  <Button
-                     variant="white"
-                     size="default"
-                     className="mb-[100px] shadow-whiteBtn transition hover:bg-customWhite/80"
-                  >
-                     <span className="leading-button">Start Project</span>
-                  </Button>
-               )}
+               <Button
+                  variant="white"
+                  size={isMobile ? "sm" : "default"}
+                  className="mb-[62px] shadow-whiteBtn md:mb-[100px]"
+               >
+                  <span className="leading-button">Start Project</span>
+               </Button>
             </div>
             <ImageBlock isMobile={Boolean(isMobile)} />
          </Container>
@@ -77,7 +53,7 @@ export const Main: React.FC<Props> = ({ className }) => {
                alt={"4"}
             />
          </div>
-         <div className="absolute -z-10 hidden md:left-[520px] md:top-[750px] md:block">
+         <div className="absolute -z-10 hidden md:left-[530px] md:top-[890px] md:block">
             <img
                className="h-[16px] w-[16px] md:h-[31px] md:w-[31px]"
                src={"/images/bgImages/red.svg"}
